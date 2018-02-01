@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+
+<!-- Inyectar data source -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://localhost/acadt"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value=""></property>
+	</bean>
+	
+	<!-- Inyectar conecxion con departamento -->
+	<bean id = "DepartamentoJDBCTemplate" class="dao.JdbcDepartamentoDao">
+	<property name="dataSource" ref="dataSource"></property>	
+	</bean>
+	<!-- Inyectar conecxion con Empleado -->
+	<bean id = "EmpleadoJDBCTemplate" class="dao.JdbcEmpleadoDao">
+	<property name="dataSource" ref="dataSource"></property>	
+	</bean>
+
+
+</beans>
